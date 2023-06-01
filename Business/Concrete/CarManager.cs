@@ -18,15 +18,31 @@ namespace Business.Concrete
             _carDal = carDal;
         }
 
+        public void Add(Car car)
+        {
+            if (car.Description.Length>2 && car.DailyPrice>0)
+            {
+                _carDal.Add(car); 
+            }
+            else
+            {
+                throw new Exception("Araba günlük fiyatı 0 dan büyük olmalıdır veya açıklaması 2 karakterden fazla olmalıdır");
+            }
+        }
 
         public List<Car> GetAll()
         {
           return  _carDal.GetAll();
         }
 
-        public List<Car> GetById(int id)
+        public List<Car> GetCarsByBrandId(int id)
         {
-           return _carDal.GetById(id);
+            return _carDal.GetAll(p=>p.BrandId== id);
+        }
+
+        public List<Car> GetCarsByColorId(int id)
+        {
+            return _carDal.GetAll(p=>p.ColorId== id);
         }
     }
 }
