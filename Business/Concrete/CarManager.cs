@@ -1,4 +1,6 @@
 ﻿using Business.Abstract;
+using Business.Constants;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using System;
@@ -18,38 +20,37 @@ namespace Business.Concrete
             _carDal = carDal;
         }
 
-        public void Insert(Car car)
+        public IResult Insert(Car car)
         {
             if (car.Description.Length > 2 && car.DailyPrice > 0)
             {
-                _carDal.Add(car);
-                Console.WriteLine("Database kaydedildi");
+                return new ErrorResult();
             }
-            else
-            {
-                throw new Exception("Araba günlük fiyatı 0 dan büyük olmalıdır veya açıklaması 2 karakterden fazla olmalıdır");
-            }
+            _carDal.Add(car);
+             return new SuccessResult(Messages.ProductNameInvalid);
 
         }
 
-        public void Delete(Car car)
+        public IResult Delete(Car car)
         {
-            _carDal.Delete(car);
+             _carDal.Delete(car);
+            return new SuccessResult(Messages.ProductDeleted);
         }
 
-        public List<Car> GetAll()
+        public IDataResult<List<Car>> GetAll()
         {
-            return  _carDal.GetAll();
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll(),Messages.ProductsListed);
         }
 
-        public Car GetByCarId(int id)
+        public IDataResult<Car> GetByCarId(int id)
         {
-            return _carDal.Get(p=>p.Id == id);  
+            return new SuccessDataResult<Car>(_carDal.Get(p=>p.Id == id));  
         }
 
-        public void Update(Car car)
+        public IResult Update(Car car)
         {
             _carDal.Update(car);
+            return new SuccessResult(Messages.ProductUpdated);
         }
     }
 }
