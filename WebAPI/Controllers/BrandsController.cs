@@ -1,0 +1,70 @@
+﻿using Business.Abstract;
+using Entities.Concrete;
+using Microsoft.AspNetCore.Mvc;
+
+namespace WebAPI.Controllers
+{
+    [Route("api/[controller]")]
+    [ApiController]
+    public class BrandsController : Controller
+    {
+       
+         IBrandService _brandService;
+
+        public BrandsController(IBrandService brandService)
+        {
+            _brandService = brandService;
+        }
+        [HttpGet("getall")]
+        public IActionResult GetAll()
+        {
+            var result = _brandService.GetAll();
+            if (result.Success == true)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+        [HttpGet("getbyid")]
+        public IActionResult GetCarsByBrandId(int id)
+        {
+            var result = _brandService.GetCarsByBrandId(id);
+            if (result.Success == true)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+        [HttpPost("insert")]
+        public IActionResult Insert(Brand brand)
+        {
+            var result = _brandService.Insert(brand);
+            if (result.Success == true)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+        [HttpPost("delete")]
+        public IActionResult Delete(Brand brand)
+        {
+            var result = _brandService.Delete(brand);
+            if (result.Success == true)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+        [HttpPost("update")]
+        public IActionResult Update(Brand brand)
+        {
+            var result = _brandService.Update(brand);
+            if (result.Success == true)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
+    }
+}
