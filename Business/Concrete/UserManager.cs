@@ -36,7 +36,7 @@ namespace Business.Concrete
             return new SuccessDataResult<User>(_userDal.Get(u => u.Id == id));
         }
 
-        public IResult Insert(User user)
+        public IResult Add(User user)
         {
            _userDal.Add(user);
             return new SuccessResult(Messages.UserAdded);

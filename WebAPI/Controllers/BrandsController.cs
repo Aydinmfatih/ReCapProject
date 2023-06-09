@@ -36,9 +36,9 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
         [HttpPost("insert")]
-        public IActionResult Insert(Brand brand)
+        public IActionResult Add(Brand brand)
         {
-            var result = _brandService.Insert(brand);
+            var result = _brandService.Add(brand);
             if (result.Success == true)
             {
                 return Ok(result);

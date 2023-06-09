@@ -35,7 +35,7 @@ namespace Business.Concrete
             throw new NotImplementedException();
         }
 
-        public IResult Insert(Rental rental)
+        public IResult Add(Rental rental)
         {
             if (rental.ReturnDate == null)
             {

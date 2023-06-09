@@ -12,9 +12,9 @@ using Entities.Concrete;
 
 CustomerManager customerManager = new CustomerManager(new EfCustomerDal());
 
-customerManager.Insert(new Customer
-{
-    Id = 1,
-    CompanyName = null,
-    UserId = 1
-});
+//customerManager.Insert(new Customer
+//{
+//    Id = 1,
+//    CompanyName = null,
+//    UserId = 1
+//});
