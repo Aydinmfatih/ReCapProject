@@ -6,7 +6,7 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CarsController : Controller
+    public class CarsController : ControllerBase
     {
         ICarService _carService;
 
@@ -19,7 +19,7 @@ namespace WebAPI.Controllers
         public IActionResult GetAll()
         {
             var result = _carService.GetAll();
-            if (result.Success == true)
+            if (result.Success)
             {
                 return Ok(result);
             }
@@ -29,17 +29,17 @@ namespace WebAPI.Controllers
         public IActionResult GetById(int id)
         {
             var result = _carService.GetByCarId(id);
-            if (result.Success == true)
+            if (result.Success)
             {
                 return Ok(result);
             }
             return BadRequest(result);
         }
-        [HttpPost("insert")]
+        [HttpPost("add")]
         public IActionResult Add(Car car)
         {
             var result = _carService.Add(car);
-            if (result.Success == true)
+            if (result.Success)
             {
                 return Ok(result);
             }

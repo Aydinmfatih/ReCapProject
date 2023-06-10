@@ -6,7 +6,7 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CustomersController : Controller
+    public class CustomersController : ControllerBase
     {
         ICustomerService _customerService;
 
@@ -35,7 +35,7 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result);
         }
-        [HttpPost("insert")]
+        [HttpPost("add")]
         public IActionResult Add(Customer customer)
         {
             var result = _customerService.Add(customer);

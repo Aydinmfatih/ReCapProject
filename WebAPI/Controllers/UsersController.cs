@@ -7,7 +7,7 @@ namespace WebAPI.Controllers
 
     [Route("api/[controller]")]
     [ApiController]
-    public class UsersController : Controller
+    public class UsersController : ControllerBase
     {
         IUserService _userService;
 
@@ -36,7 +36,7 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result);
         }
-        [HttpPost("insert")]
+        [HttpPost("add")]
         public IActionResult Add(User user)
         {
             var result = _userService.Add(user);

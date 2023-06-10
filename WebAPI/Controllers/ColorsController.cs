@@ -7,7 +7,7 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ColorsController : Controller
+    public class ColorsController : ControllerBase
     {
         IColorService _colorService;
 
@@ -36,7 +36,7 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result);
         }
-        [HttpPost("insert")]
+        [HttpPost("add")]
         public IActionResult Add(Color color)
         {
             var result = _colorService.Add(color);

@@ -6,10 +6,10 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class BrandsController : Controller
+    public class BrandsController : ControllerBase
     {
-       
-         IBrandService _brandService;
+
+        IBrandService _brandService;
 
         public BrandsController(IBrandService brandService)
         {
@@ -35,7 +35,7 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result);
         }
-        [HttpPost("insert")]
+        [HttpPost("add")]
         public IActionResult Add(Brand brand)
         {
             var result = _brandService.Add(brand);
