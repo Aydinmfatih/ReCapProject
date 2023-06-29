@@ -10,7 +10,8 @@ using Entities.Concrete;
 //    Console.WriteLine(item.Id);
 //}
 
-CustomerManager customerManager = new CustomerManager(new EfCustomerDal());
+
+
 
 //customerManager.Insert(new Customer
 //{
