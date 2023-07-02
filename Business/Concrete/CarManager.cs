@@ -1,31 +1,23 @@
 ﻿using Business.Abstract;
+using Business.BusinessAspects.Autofac;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
-using FluentValidation;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Net.Http.Headers;
-using System.Text;
-using System.Threading.Tasks;
-using ValidationException = FluentValidation.ValidationException;
 
 namespace Business.Concrete
 {
     public class CarManager : ICarService
     {
-        ICarDal _carDal;
+        ICarDal _carDal; 
 
         public CarManager(ICarDal carDal)
         {
             _carDal = carDal;
         }
-
+        [SecuredOperation("product.add")]
         [ValidationAspect(typeof(CarValidator))]
         public IResult Add(Car car)
         {
