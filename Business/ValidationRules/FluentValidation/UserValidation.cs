@@ -1,4 +1,5 @@
-﻿using Entities.Concrete;
+﻿using Core.Entities.Concrete;
+using Entities.Concrete;
 using FluentValidation;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System;
@@ -15,8 +16,7 @@ namespace Business.ValidationRules.FluentValidation
         {
             RuleFor(p => p.FirstName).NotEmpty();
             RuleFor(p => p.Email).NotEmpty();
-            RuleFor(p => p.Password).NotEmpty();
-            RuleFor(p => p.Password).MinimumLength(6);
+          
         }
     }
 }
