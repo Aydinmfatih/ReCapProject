@@ -11,7 +11,7 @@ using Entities.Concrete;
 
 
 
-
+Console.WriteLine("asd"  );
 //customerManager.Insert(new Customer
 //{
 //    Id = 1,
