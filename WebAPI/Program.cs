@@ -8,6 +8,9 @@ using DataAccess.Concrete.EntityFramework;
 using Core.Utilities.Security.JWT;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Core.Utilities.Security.Encryption;
+using Core.DependencyResolvers;
+using Core.Utilities.IoC;
+using Core.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -32,7 +35,10 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             IssuerSigningKey = SecurityKeyHelper.CreateSecurityKey(tokenOptions.SecurityKey)
         };
     });
-
+builder.Services.AddDependencyResolvers(new ICoreModule[]
+{
+    new CoreModule()
+});
 //Ioc service provider
 builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory())
     .ConfigureContainer<ContainerBuilder>(builder =>
